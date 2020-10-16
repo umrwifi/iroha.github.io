@@ -7,15 +7,15 @@
   
   <title>记用docker安装书签服务archivebox | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="准备工作 请先安装好docker和docker-compose  打包安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lat">
+  <meta name="description" content="准备工作 请先安装好docker和docker-compose  安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lates">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记用docker安装书签服务archivebox">
 <meta property="og:url" content="https://umrwifi.github.io/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="准备工作 请先安装好docker和docker-compose  打包安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lat">
+<meta property="og:description" content="准备工作 请先安装好docker和docker-compose  安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lates">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-16T16:01:55.443Z">
+<meta property="article:modified_time" content="2020-10-16T16:24:46.952Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -91,33 +91,36 @@
         <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
 <li>请先安装好docker和docker-compose</li>
 </ul>
-<h2 id="打包安装"><a href="#打包安装" class="headerlink" title="打包安装"></a>打包安装</h2><ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
 <li>创建一个docker-compose.yml文件，文件内容如下</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell">version: &#x27;3&#x27;<br>services:<br>    archivebox:<br>        # build: .<br>        image: nikisweeting/archivebox:latest<br>        command: server --init 0.0.0.0:8000<br>        stdin_open: true<br>        tty: true<br>        container_name: archivebox #指定容器名称<br>        ports:<br>            - 8000:8000<br>        environment:<br>            - USE_COLOR=True<br>            - SHOW_PROGRESS=False<br>        volumes:<br>            - ./data:/data   ## 共享文件夹位置<br></code></pre></td></tr></table></figure>
 
-<ol>
-<li>运行以下代码</li>
-</ol>
+<ul>
+<li>创建一个共享文件夹</li>
+</ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir data<br>chmod 777 data<br></code></pre></td></tr></table></figure>
 
-<p>确认docker是否启动</p>
+<ul>
+<li>确认docker是否启动</li>
+</ul>
 <p><code>docker ps</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS                 PORTS                    NAMES<br>8efb7b51b102        nikisweeting/archivebox:latest   &quot;dumb-init -- /app/b…&quot;   24 minutes ago      Up 24 minutes          0.0.0.0:8000-&gt;8000/tcp   archivebox <br></code></pre></td></tr></table></figure>
 
-<p>看到name为archivebox的容器说明启动成功<br>如果没有看到容器，可以输入<code>docker logs archivebox</code>来查看日志</p>
-<p>如果上述步骤都没有问题，可以打开 <a href="localhost:5050">localhost:5050</a> 看一下运行状况。</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>进入容器内部</p>
+<p>看到name为archivebox的容器说明启动成功，可以用 <code>curl localhost:5050</code> 或直接在浏览器上输入域名+端口查看能否访问。</p>
+<p>如果没有看到容器，可以输入<code>docker logs archivebox</code>来查看日志</p>
+<h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>进入容器内部</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec it archivebox sh<br></code></pre></td></tr></table></figure>
 
 <p>创建superuser</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
+<p>按照指示输入用户名及密码即可</p>
 <p>至此archivebox的安装及初始化全部完毕</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/" data-id="ckgcgk65i000416bmbcwe4djo" class="article-share-link">Share</a>
+      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/" data-id="ckgcgsjfs00039abm82nwazzi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,15 +128,6 @@
   
     
 <nav id="article-nav">
-  
-    <a href="/iroha.github.io/2020/10/16/archivebox.md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          记用docker安装书签服务archivebox
-        
-      </div>
-    </a>
   
   
     <a href="/iroha.github.io/2020/10/14/acme%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
@@ -173,10 +167,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/iroha.github.io/2020/10/16/archivebox.md/">记用docker安装书签服务archivebox</a>
-          </li>
         
           <li>
             <a href="/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/">记用docker安装书签服务archivebox</a>
