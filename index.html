@@ -111,7 +111,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it archivebox sh<br></code></pre></td></tr></table></figure>
 
 <p>创建superuser</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 添加用户 若提示用户已存在可以不用管，继续往下执行</span></span><br>useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
 <p>按照指示输入用户名及密码即可</p>
 <p>至此archivebox的安装及初始化全部完毕</p>
 

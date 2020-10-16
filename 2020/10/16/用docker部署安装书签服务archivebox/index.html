@@ -15,7 +15,7 @@
 <meta property="og:description" content="准备工作 请先安装好docker和docker-compose  安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lates">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-16T16:33:30.724Z">
+<meta property="article:modified_time" content="2020-10-16T16:35:29.625Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -113,7 +113,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it archivebox sh<br></code></pre></td></tr></table></figure>
 
 <p>创建superuser</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 添加用户 若提示用户已存在可以不用管，继续往下执行</span></span><br>useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
 <p>按照指示输入用户名及密码即可</p>
 <p>至此archivebox的安装及初始化全部完毕</p>
 
