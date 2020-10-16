@@ -89,13 +89,13 @@
         <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
 <li>请先安装好docker和docker-compose</li>
 </ul>
-<h2 id="打包安装"><a href="#打包安装" class="headerlink" title="打包安装"></a>打包安装</h2><ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
 <li>创建一个docker-compose.yml文件，文件内容如下</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell">version: &#x27;3&#x27;<br>services:<br>    archivebox:<br>        # build: .<br>        image: nikisweeting/archivebox:latest<br>        command: server --init 0.0.0.0:8000<br>        stdin_open: true<br>        tty: true<br>        container_name: archivebox #指定容器名称<br>        ports:<br>            - 8000:8000<br>        environment:<br>            - USE_COLOR=True<br>            - SHOW_PROGRESS=False<br>        volumes:<br>            - ./data:/data   ## 共享文件夹位置<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>运行以下代码</li>
+<li>创建一个共享文件夹</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir data<br>chmod 777 data<br></code></pre></td></tr></table></figure>
 
@@ -105,7 +105,7 @@
 <p><code>docker ps</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS                 PORTS                    NAMES<br>8efb7b51b102        nikisweeting/archivebox:latest   &quot;dumb-init -- /app/b…&quot;   24 minutes ago      Up 24 minutes          0.0.0.0:8000-&gt;8000/tcp   archivebox <br></code></pre></td></tr></table></figure>
 
-<p>如果看到name为archivebox的容器说明启动成功<br>可以用 <code>curl localhost:5050</code> 看一下运行状况。</p>
+<p>看到name为archivebox的容器说明启动成功，可以用 <code>curl localhost:5050</code> 或直接在浏览器上输入域名+端口查看能否访问。</p>
 <p>如果没有看到容器，可以输入<code>docker logs archivebox</code>来查看日志</p>
 <h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>进入容器内部</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec it archivebox sh<br></code></pre></td></tr></table></figure>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/archivebox.md/" data-id="ckgcg5hyx0001cibm7ku51mvg" class="article-share-link">Share</a>
+      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/archivebox.md/" data-id="ckgcg5huu0001cjbm86ife5tr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -179,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/" data-id="ckgcg5hz20004cibm83xch0cl" class="article-share-link">Share</a>
+      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/16/%E7%94%A8docker%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E4%B9%A6%E7%AD%BE%E6%9C%8D%E5%8A%A1archivebox/" data-id="ckgcg5huz0004cjbmbcio9p8m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -218,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/14/acme%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E5%91%BD%E4%BB%A4/" data-id="ckgcg5hys0000cibmgxb2cdsi" class="article-share-link">Share</a>
+      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/14/acme%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E5%91%BD%E4%BB%A4/" data-id="ckgcg5hup0000cjbmd6n72qlo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -255,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/07/vim%E9%9D%9E%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D/" data-id="ckgcg5hz00003cibmfjfzb0we" class="article-share-link">Share</a>
+      <a data-url="https://umrwifi.github.io/iroha.github.io/2020/10/07/vim%E9%9D%9E%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D/" data-id="ckgcg5hux0003cjbm47ag5njk" class="article-share-link">Share</a>
       
       
     </footer>
