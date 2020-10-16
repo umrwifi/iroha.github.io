@@ -15,7 +15,7 @@
 <meta property="og:description" content="准备工作 请先安装好docker和docker-compose  安装 创建一个docker-compose.yml文件，文件内容如下  12345678910111213141516version: &amp;#x27;3&amp;#x27;services:    archivebox:        # build: .        image: nikisweeting&#x2F;archivebox:lates">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-16T16:31:58.714Z">
+<meta property="article:modified_time" content="2020-10-16T16:33:30.724Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -110,7 +110,7 @@
 <p>看到name为archivebox的容器说明启动成功，可以用 <code>curl localhost:8000</code> 或直接在浏览器上输入域名+端口查看能否访问。</p>
 <p>如果没有看到容器，可以输入<code>docker logs archivebox</code>来查看日志</p>
 <h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>进入容器内部</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec it archivebox sh<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it archivebox sh<br></code></pre></td></tr></table></figure>
 
 <p>创建superuser</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd -r -g archivebox -G audio,video archivebox<br>chown -R archivebox:archivebox ./<br>su  archivebox<br>archivebox manage createsuperuser <br></code></pre></td></tr></table></figure>
